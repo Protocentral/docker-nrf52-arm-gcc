@@ -6,6 +6,8 @@ WORKDIR /home/dev
 
 ENV NORDIC_PATH /home/dev/nRF5_SDK_14.0.0_3bcc1f7
 
+ENV RELEASE_NAME v1.2.0
+
 #download and unarchive 
 RUN wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2019q4/gcc-arm-none-eabi-9-2019-q4-major-x86_64-linux.tar.bz2 \
     && tar xvf gcc-arm-none-eabi-9-2019-q4-major-x86_64-linux.tar.bz2 \
@@ -25,6 +27,12 @@ RUN ls /home/dev
 RUN sed -i "s/GNU_INSTALL_ROOT := \/usr\/local\/gcc-arm-none-eabi-4_9-2015q3\/bin\//GNU_INSTALL_ROOT := \/home\/dev\/gcc-arm-none-eabi-9-2019-q4-major\/bin\//" ${NORDIC_PATH}/components/toolchain/gcc/Makefile.posix 
 
 RUN cat ${NORDIC_PATH}/components/toolchain/gcc/Makefile.posix
+
+RUN apt-get update -y
+RUN apt-get install -y python3
+RUN apt-get install -y python-pip
+
+RUN pip install nrfutil
 
 # RUN arm-none-eabi-gcc --version
 
