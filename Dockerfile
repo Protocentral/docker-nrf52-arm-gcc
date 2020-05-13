@@ -16,5 +16,14 @@ RUN wget https://developer.nordicsemi.com/nRF5_SDK/nRF5_SDK_v14.x.x/nRF5_SDK_14.
     && unzip nRF5_SDK_14.0.0_3bcc1f7.zip \
     && rm nRF5_SDK_14.0.0_3bcc1f7.zip
 
-RUN arm-none-eabi-gcc --version
+ENV NORDIC_PATH /home/dev/nRF5_SDK_14.0.0_3bcc1f7
+
+# RUN arm-none-eabi-gcc --version
+
+WORKDIR /project
+
+COPY entrypoint.sh /project/entrypoint.sh
+RUN chmod +x /project/entrypoint.sh 
+
+ENTRYPOINT [ "/project/entrypoint.sh" ]
 
