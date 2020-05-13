@@ -12,7 +12,7 @@ then
     echo "Relase built"
     echo "---------------------------------"
     echo "Building DFU package"
-    nrfutil pkg generate --hw-version 52 --sd-req 0x96 --application-version 0xff --application _build/wearnrf.hex --key-file key_file.pem xxx_840.zip
+    nrfutil pkg generate --hw-version 52 --sd-req 0x96 --application-version 0xff --application _build/wearnrf.hex --key-file key_file.pem $RELEASE_NAME.zip
 else
     echo "Release failed"
 fi

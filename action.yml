@@ -1,0 +1,13 @@
+# action.yml
+name: 'ARM GCC nRF52 package builder'
+description: 'DFU Package builder action for nRF52'
+inputs:
+    binaryname:  # Name of binary file output
+        description: 'Name of binary output file'
+        required: false
+        default: 'wearnrf.hex'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.binaryname }}
